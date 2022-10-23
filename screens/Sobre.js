@@ -23,15 +23,6 @@ export default function Sobre() {
             icon="car-info"
           />
         </View>
-        <Text variant="headlineMedium">Repositório</Text>
-        <View style={styles.block}>
-          <Avatar.Icon
-            size={84}
-            color="white"
-            backgroundColor="black"
-            icon="github"
-          />
-        </View>
       </View>
     </>
   );
