@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  Alert,
   StyleSheet,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
@@ -128,7 +129,23 @@ export default function CadastroVeiculo({ navigation }) {
         params: { novoItem: insertId },
       });
     } catch (err) {
-      console.error(err);
+      //console.error(err);
+
+      //Error code 19
+      if (err.message.substring(0, 13) == "Error code 19") {
+        Alert.alert(
+          "Veículo já inserido",
+          `Você pode consultá-lo na aba Veiculos Salvos`,
+          [{ text: "OK" }]
+        );
+      } else {
+        Alert.alert(
+          "Erro inesperado",
+          `A API pode estar offline ou algum outro incidente`,
+          [{ text: "OK" }]
+        );
+      }
+      limpaDados();
     }
   }
 
