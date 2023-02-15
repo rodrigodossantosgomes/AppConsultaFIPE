@@ -18,6 +18,13 @@ import { executeSql } from "../db";
 import Radio from "../components/Radio";
 
 export default function CadastroVeiculo({ navigation }) {
+  const tipos = [
+    { id: 1, name: "Carros", value: "cars" },
+    { id: 2, name: "Motos", value: "motorcycles" },
+    { id: 3, name: "Caminhões", value: "trucks" },
+  ];
+  const [openTipos, setOpenTipos] = useState(false);
+
   const [valueTipo, setTipo] = useState("");
 
   const [marcas, setMarcas] = useState([]);
@@ -176,7 +183,31 @@ export default function CadastroVeiculo({ navigation }) {
           <View style={{ flex: 1 }}>
             <View style={styles.formContainer}>
               <Text style={styles.title}>Selecione o tipo: </Text>
-              <RadioButton.Group
+              <DropDownPicker
+                style={{
+                  borderRadius: 20,
+                }}
+                schema={{
+                  label: "name",
+                  value: "value",
+                }}
+                placeholder="Selecione um tipo"
+                textStyle={{
+                  fontSize: 18,
+                }}
+                listMode="SCROLLVIEW"
+                open={openTipos}
+                value={valueTipo}
+                items={tipos}
+                setOpen={setOpenTipos}
+                setValue={setTipo}
+                onSelectItem={(item) => {
+                  carregaModelos(item);
+                }}
+                zIndex={4000}
+                zIndexInverse={1000}
+              />
+              {/* <RadioButton.Group
                 onValueChange={(valueTipo) => {
                   setTipo(valueTipo);
                 }}
@@ -185,7 +216,7 @@ export default function CadastroVeiculo({ navigation }) {
                 <Radio label="Carros" value="cars" />
                 <Radio label="Motos" value="motorcycles" />
                 <Radio label="Caminhões" value="trucks" />
-              </RadioButton.Group>
+              </RadioButton.Group> */}
 
               <Text style={styles.title}>Selecione a marca: </Text>
               <DropDownPicker
