@@ -8,6 +8,7 @@ import {
   Platform,
   View,
   Text,
+  ScrollView,
 } from "react-native";
 import { RadioButton, Button } from "react-native-paper";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -166,145 +167,155 @@ export default function CadastroVeiculo({ navigation }) {
   }, [valueTipo]);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <View style={styles.formContainer}>
-            <Text style={styles.title}>Selecione o tipo: </Text>
-            <RadioButton.Group
-              onValueChange={(valueTipo) => {
-                setTipo(valueTipo);
-              }}
-              value={valueTipo}
-            >
-              <Radio label="Carros" value="cars" />
-              <Radio label="Motos" value="motorcycles" />
-              <Radio label="Caminhões" value="trucks" />
-            </RadioButton.Group>
+    <ScrollView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={{ flex: 1 }}>
+            <View style={styles.formContainer}>
+              <Text style={styles.title}>Selecione o tipo: </Text>
+              <RadioButton.Group
+                onValueChange={(valueTipo) => {
+                  setTipo(valueTipo);
+                }}
+                value={valueTipo}
+              >
+                <Radio label="Carros" value="cars" />
+                <Radio label="Motos" value="motorcycles" />
+                <Radio label="Caminhões" value="trucks" />
+              </RadioButton.Group>
 
-            <Text style={styles.title}>Selecione a marca: </Text>
-            <DropDownPicker
-              style={{
-                borderRadius: 20,
-              }}
-              schema={{
-                label: "name",
-                value: "code",
-              }}
-              placeholder="Selecione uma marca"
-              textStyle={{
-                fontSize: 18,
-              }}
-              listMode="MODAL"
-              searchable={true}
-              searchTextInputStyle={{
-                borderRadius: 15,
-              }}
-              open={openMarcas}
-              value={valueMarcas}
-              items={marcas}
-              setOpen={setOpenMarcas}
-              setValue={setValueMarcas}
-              setItems={setMarcas}
-              onSelectItem={(item) => {
-                carregaModelos(item);
-              }}
-              zIndex={3000}
-              zIndexInverse={1000}
-            />
+              <Text style={styles.title}>Selecione a marca: </Text>
+              <DropDownPicker
+                style={{
+                  borderRadius: 20,
+                }}
+                schema={{
+                  label: "name",
+                  value: "code",
+                }}
+                placeholder="Selecione uma marca"
+                textStyle={{
+                  fontSize: 18,
+                }}
+                listMode="MODAL"
+                searchable={true}
+                searchTextInputStyle={{
+                  borderRadius: 15,
+                }}
+                open={openMarcas}
+                value={valueMarcas}
+                items={marcas}
+                setOpen={setOpenMarcas}
+                setValue={setValueMarcas}
+                setItems={setMarcas}
+                onSelectItem={(item) => {
+                  carregaModelos(item);
+                }}
+                zIndex={3000}
+                zIndexInverse={1000}
+              />
 
-            <Text style={styles.title}>Selecione o modelo: </Text>
-            <DropDownPicker
-              style={{
-                borderRadius: 20,
-              }}
-              schema={{
-                label: "name",
-                value: "code",
-              }}
-              placeholder="Selecione um modelo"
-              textStyle={{
-                fontSize: 18,
-              }}
-              listMode="MODAL"
-              searchable={true}
-              searchTextInputStyle={{
-                borderRadius: 15,
-              }}
-              open={openModelos}
-              value={valueModelos}
-              items={modelos}
-              setOpen={setOpenModelos}
-              setValue={setValueModelos}
-              setItems={setModelos}
-              onSelectItem={(item) => {
-                carregaAnos(item);
-              }}
-              zIndex={2000}
-              zIndexInverse={2000}
-            />
+              <Text style={styles.title}>Selecione o modelo: </Text>
+              <DropDownPicker
+                style={{
+                  borderRadius: 20,
+                }}
+                schema={{
+                  label: "name",
+                  value: "code",
+                }}
+                placeholder="Selecione um modelo"
+                textStyle={{
+                  fontSize: 18,
+                }}
+                listMode="MODAL"
+                searchable={true}
+                searchTextInputStyle={{
+                  borderRadius: 15,
+                }}
+                open={openModelos}
+                value={valueModelos}
+                items={modelos}
+                setOpen={setOpenModelos}
+                setValue={setValueModelos}
+                setItems={setModelos}
+                onSelectItem={(item) => {
+                  carregaAnos(item);
+                }}
+                zIndex={2000}
+                zIndexInverse={2000}
+              />
 
-            <Text style={styles.title}>Selecione o ano: </Text>
-            <DropDownPicker
-              style={{
-                borderRadius: 20,
-              }}
-              schema={{
-                label: "name",
-                value: "code",
-              }}
-              placeholder="Selecione um ano"
-              textStyle={{
-                fontSize: 18,
-              }}
-              listMode="MODAL"
-              searchable={true}
-              searchTextInputStyle={{
-                borderRadius: 15,
-              }}
-              open={openAnos}
-              value={valueAnos}
-              items={anos}
-              setOpen={setOpenAnos}
-              setValue={setValueAnos}
-              setItems={setAnos}
-              onSelectItem={(item) => {
-                carregaDados(item);
-              }}
-              zIndex={1000}
-              zIndexInverse={3000}
-            />
-            <Text style={styles.title}>Valor: {valueDados.price}</Text>
+              <Text style={styles.title}>Selecione o ano: </Text>
+              <DropDownPicker
+                style={{
+                  borderRadius: 20,
+                }}
+                schema={{
+                  label: "name",
+                  value: "code",
+                }}
+                placeholder="Selecione um ano"
+                textStyle={{
+                  fontSize: 18,
+                }}
+                listMode="MODAL"
+                searchable={true}
+                searchTextInputStyle={{
+                  borderRadius: 15,
+                }}
+                open={openAnos}
+                value={valueAnos}
+                items={anos}
+                setOpen={setOpenAnos}
+                setValue={setValueAnos}
+                setItems={setAnos}
+                onSelectItem={(item) => {
+                  carregaDados(item);
+                }}
+                zIndex={1000}
+                zIndexInverse={3000}
+              />
+              <Text style={styles.title}>Valor: {valueDados.price}</Text>
 
-            <Button
-              disabled={liberaSalvar}
-              style={{ marginTop: 16 }}
-              buttonColor="#aaa"
-              contentStyle={{ height: 48 }}
-              labelStyle={{ color: "white", fontSize: 18, fontWeight: "bold" }}
-              mode="contained"
-              onPress={salvaNoBanco}
-            >
-              Salvar Veículo
-            </Button>
+              <Button
+                disabled={liberaSalvar}
+                style={{ marginTop: 16 }}
+                buttonColor="#aaa"
+                contentStyle={{ height: 48 }}
+                labelStyle={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "bold",
+                }}
+                mode="contained"
+                onPress={salvaNoBanco}
+              >
+                Salvar Veículo
+              </Button>
 
-            <Button
-              style={{ marginTop: 12 }}
-              buttonColor="#aaa"
-              contentStyle={{ height: 48 }}
-              labelStyle={{ color: "white", fontSize: 18, fontWeight: "bold" }}
-              mode="contained" //'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal'
-              onPress={() => limpaDados()}
-            >
-              Limpar
-            </Button>
+              <Button
+                style={{ marginTop: 12 }}
+                buttonColor="#aaa"
+                contentStyle={{ height: 48 }}
+                labelStyle={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "bold",
+                }}
+                mode="contained" //'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal'
+                onPress={() => limpaDados()}
+              >
+                Limpar
+              </Button>
+            </View>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }
 
