@@ -37,7 +37,8 @@ export default function VeiculoViewScreen({ route, navigation }) {
           "/" +
           veiculoClicadoCodFipe +
           "/years/" +
-          removeUltimoCaracter(veiculoClicadoAno, 2) +
+          //removeUltimoCaracter(veiculoClicadoAno, 2) +
+          veiculoClicadoAno +
           "/history"
       );
       const veiculo = await response.json();

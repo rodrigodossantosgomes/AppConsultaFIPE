@@ -114,6 +114,7 @@ export default function CadastroVeiculo({ navigation }) {
           code
       );
       const valueDados = await response.json();
+      valueDados.yearId = code;
       setDados(valueDados);
       setLiberaSalvar(false);
     } catch (err) {}
@@ -122,12 +123,13 @@ export default function CadastroVeiculo({ navigation }) {
   async function salvaNoBanco() {
     try {
       const { insertId = null } = await executeSql(
-        "INSERT INTO veiculos (tipo, marca, modelo, ano, codigoFipe) VALUES(?, ?, ?, ?, ?)",
+        "INSERT INTO veiculossalvos (tipo, marca, modelo, ano, anoId, codigoFipe) VALUES(?, ?, ?, ?, ?, ?)",
         [
           valueTipo,
           valueDados.brand,
           valueDados.model,
           valueDados.modelYear,
+          valueDados.yearId,
           valueDados.codeFipe,
         ]
       );
@@ -207,16 +209,6 @@ export default function CadastroVeiculo({ navigation }) {
                 zIndex={4000}
                 zIndexInverse={1000}
               />
-              {/* <RadioButton.Group
-                onValueChange={(valueTipo) => {
-                  setTipo(valueTipo);
-                }}
-                value={valueTipo}
-              >
-                <Radio label="Carros" value="cars" />
-                <Radio label="Motos" value="motorcycles" />
-                <Radio label="Caminhões" value="trucks" />
-              </RadioButton.Group> */}
 
               <Text style={styles.title}>Selecione a marca: </Text>
               <DropDownPicker

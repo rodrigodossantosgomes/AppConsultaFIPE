@@ -18,7 +18,7 @@ function removeUltimoCaracter(value, qtd) {
 
 function excluirItem(item, recuperaListaVeiculos) {
   const _runDeleteQuery = async () => {
-    await executeSql("DELETE FROM veiculos WHERE id = ?", [item.id]);
+    await executeSql("DELETE FROM veiculossalvos WHERE id = ?", [item.id]);
     recuperaListaVeiculos();
   };
 
@@ -93,7 +93,9 @@ export default function VeiculosSalvos({ route, navigation }) {
   const [lista, setLista] = useState([]);
 
   async function recuperaListaVeiculos() {
-    const rs = await executeSql("SELECT * FROM veiculos ORDER BY tipo ASC");
+    const rs = await executeSql(
+      "SELECT * FROM veiculossalvos ORDER BY tipo ASC"
+    );
     setLista(rs.rows._array);
   }
 
@@ -129,7 +131,7 @@ export default function VeiculosSalvos({ route, navigation }) {
               navigation.navigate("VeiculoView", {
                 veiculoClicadoTipo: item.tipo,
                 veiculoClicadoCodFipe: item.codigoFipe,
-                veiculoClicadoAno: item.ano,
+                veiculoClicadoAno: item.anoId,
               });
             }}
           />

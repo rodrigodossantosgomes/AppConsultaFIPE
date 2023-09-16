@@ -3,12 +3,13 @@ import * as SQLite from "expo-sqlite";
 const DATABASE_NAME = "consultaFipe.sqlite";
 
 const SQL_CREATE_ENTRIES = [
-  `CREATE TABLE IF NOT EXISTS veiculos (
+  `CREATE TABLE IF NOT EXISTS veiculossalvos (
       id INTEGER PRIMARY KEY autoincrement,
       tipo VARCHAR(255) NOT NULL,
       marca VARCHAR(255) NOT NULL,
       modelo VARCHAR(255) NOT NULL,
       ano VARCHAR(255) NOT NULL,
+      anoId VARCHAR(255) NOT NULL,
       codigoFipe VARCHAR(255) NOT NULL,
       UNIQUE(codigoFipe, ano)
     )`,
